@@ -3,7 +3,7 @@
 A modern web application for file management with user authentication, file uploads, and user profile management.
 
 ## Screenshot
-[![Image](https://i.postimg.cc/tR39622Z/Screenshot-2025-03-31-131204.png)](https://postimg.cc/YjScKfcM)
+https://github.com/user-attachments/assets/6f50214f-d0ba-4e0f-909b-5006fe1eec6d
 
 ## Features
 
