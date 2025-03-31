@@ -26,7 +26,7 @@ interface FileState {
   loadDashboard: () => Promise<void>;
   uploadFile: (fileData: FormData) => Promise<void>;
   deleteFile: (id: number) => Promise<void>;
-  downloadFile: (id: number) => void;
+  downloadFile: (id: number) => Promise<void>;
   clearErrors: () => void;
 }
 
@@ -100,8 +100,14 @@ const useFileStore = create<FileState>((set, get) => ({
     }
   },
   
-  downloadFile: (id) => {
-    fileService.downloadFile(id);
+  downloadFile: async (id) => {
+    try {
+      await fileService.downloadFile(id);
+    } catch (error: any) {
+      set({ 
+        error: error.response?.data?.detail || 'Failed to download file' 
+      });
+    }
   },
   
   clearErrors: () => {

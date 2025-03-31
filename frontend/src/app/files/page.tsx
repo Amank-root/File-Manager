@@ -211,8 +211,14 @@ const FilesPage = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
-                      onClick={() => downloadFile(file.id)}
-                      className="text-primary-600 hover:text-primary-900 mr-4"
+                      onClick={async () => {
+                        try {
+                          await downloadFile(file.id);
+                        } catch (err) {
+                          // Error will be handled by the store
+                        }
+                      }}
+                      className="text-black cursor-pointer hover:text-primary-900 mr-4"
                       title="Download"
                     >
                       <FaDownload />

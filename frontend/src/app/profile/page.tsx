@@ -301,7 +301,7 @@ const ProfilePage = () => {
                 />
                 
                 <div className="mt-6">
-                  <Button type="submit" isLoading={isLoading}>
+                  <Button className='bg-black' type="submit" isLoading={isLoading}>
                     Save Changes
                   </Button>
                 </div>
@@ -311,12 +311,12 @@ const ProfilePage = () => {
           
           {/* Addresses Tab */}
           {activeTab === 'addresses' && (
-            <div className="bg-white text-black p-6 rounded-lg shadow-md">
+            <div className="bg-white p-6 text-black rounded-lg shadow-md">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-semibold">Your Addresses</h2>
                 <Button
                   onClick={handleAddAddress}
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 bg-black"
                 >
                   <FaPlus />
                   Add Address
@@ -326,12 +326,12 @@ const ProfilePage = () => {
               {addresses.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-gray-500 mb-4">You don't have any addresses yet.</p>
-                  <Button onClick={handleAddAddress}>Add Your First Address</Button>
+                  <Button className='cursor-pointer bg-black' onClick={handleAddAddress}>Add Your First Address</Button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {addresses.map((address) => (
-                    <div key={address.id} className="border rounded-lg overflow-hidden">
+                    <div key={address.id} className="border text-black rounded-lg overflow-hidden">
                       <div className="bg-gray-50 p-3 flex justify-between items-center border-b">
                         <div className="flex items-center gap-2">
                           <span className="font-medium capitalize">{address.address_type}</span>
@@ -377,7 +377,7 @@ const ProfilePage = () => {
       {/* Address Modal */}
       {showAddressModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+          <div className="bg-white text-black rounded-lg shadow-xl p-6 w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">
               {editingAddress ? 'Edit Address' : 'Add New Address'}
             </h2>
@@ -461,7 +461,7 @@ const ProfilePage = () => {
                 >
                   Cancel
                 </Button>
-                <Button type="submit" isLoading={isLoading}>
+                <Button type="submit" isLoading={isLoading} className='bg-black'>
                   {editingAddress ? 'Update Address' : 'Add Address'}
                 </Button>
               </div>
@@ -473,7 +473,7 @@ const ProfilePage = () => {
       {/* Password Modal */}
       {showPasswordModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+          <div className="bg-white text-black rounded-lg shadow-xl p-6 w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">Change Password</h2>
             
             <form onSubmit={handlePasswordSubmit(onPasswordSubmit)}>
@@ -518,7 +518,7 @@ const ProfilePage = () => {
                 >
                   Cancel
                 </Button>
-                <Button type="submit" isLoading={isLoading}>
+                <Button type="submit" isLoading={isLoading} className='bg-black'>
                   Change Password
                 </Button>
               </div>

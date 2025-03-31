@@ -200,8 +200,42 @@ export const fileService = {
     return api.delete(`/files/delete/${id}/`);
   },
   
-  downloadFile: (id: number) => {
-    window.open(`${API_URL}/files/download/${id}/`, '_blank');
+  downloadFile: async (id: number) => {
+    const response = await api.get(`/files/download/${id}/`, {
+      responseType: 'blob'
+    });
+    
+    // Create a blob from the response data
+    const blob = new Blob([response.data]);
+    
+    // Create a URL for the blob
+    const url = window.URL.createObjectURL(blob);
+    
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = url;
+    
+    // Get filename from Content-Disposition header or use a default
+    const contentDisposition = response.headers;
+    console.log(contentDisposition['content-type'].split("/")[1])
+    let filename = `downloaded-file-${contentDisposition['content-length']}.${contentDisposition['content-type'].split("/")[1]}`;
+    // if (contentDisposition) {
+    //   filename=filename
+    //   // const filenameMatch = contentDisposition.match(filename=);
+    //   // if (filenameMatch) {
+    //   //   filename = filenameMatch[1];
+    //   // }
+    // }
+    
+    link.setAttribute('download', filename);
+    
+    // Append to body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    
+    // Clean up the URL
+    window.URL.revokeObjectURL(url);
   },
   
   getDashboard: async () => {
